@@ -1,0 +1,7 @@
+/fb_callback:
+  provider: facebook
+  action: callback
+
+/discord_callback:
+  provider: discord
+  aciton: callback
