@@ -1,0 +1,23 @@
+version: '3'
+services:
+  server:
+    build: site
+    container_name: server
+    ports :
+     - "80:80"
+    volumes:
+     - ./server/:/var/www/html/
+     - ./config/000-default.conf:/etc/apache2/sites-available/000-default.conf
+     - ./config/apache2.conf:/etc/apache2/apache2.conf
+     - ./config/php.ini:/usr/local/etc/php/php.ini
+  client:
+    build: site
+    container_name: client
+    ports :
+     - "8080:80"
+    volumes:
+     - ./client/:/var/www/html/
+     - ./config/000-default.conf:/etc/apache2/sites-available/000-default.conf
+     - ./config/apache2.conf:/etc/apache2/apache2.conf
+     - ./config/php.ini:/usr/local/etc/php/php.ini
+        
