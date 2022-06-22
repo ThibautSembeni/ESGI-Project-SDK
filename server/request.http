@@ -1,0 +1,25 @@
+POST http://localhost:80/register
+Content-Type: application/x-www-form-urlencoded
+
+name=MonApp1&url=http://localhost:80&redirect_uri=http://localhost:80/callback
+
+#######################################
+##        Authorization_code         ##
+#######################################
+### Lien vers modal d'approbation
+GET http://localhost:80/auth?response_type=code&client_id=62b36a5ec0478&redirect_uri=http://localhost:80/callback&scope=read&state=xyz
+
+### Retour de modal => resultat redirige vers redirect_uri
+GET http://localhost:80/auth-success?client_id=62b36a5ec0478&state=xyz
+
+### Exchange code with token
+GET http://localhost:80/token?client_id=62b36a5ec0478&client_secret=62b36a5ec047b&code=3657d3f1d508bfacfcc8889c9915a51a&grant_type=authorization_code&redirect_uri=http://localhost:80/callback
+
+### grantType Password
+GET http://localhost:80/token?client_id=62b36a5ec0478&client_secret=62b36a5ec047b&grant_type=password&redirect_uri=http://localhost:80/callback&username=thib&password=test
+
+#######################################
+##         Get User Profile          ##
+#######################################
+GET http://localhost:80/me
+Authorization: Bearer 61765a93adc95f5b6f6c9920fb10471b

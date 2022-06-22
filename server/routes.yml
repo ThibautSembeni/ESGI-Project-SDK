@@ -1,0 +1,17 @@
+/:
+  action: home
+
+/register:
+  action: register
+
+/auth:
+  action: auth
+
+/auth-success:
+  action: authSuccess
+
+/token:
+  action: token
+
+/me:
+  action: me
