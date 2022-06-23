@@ -1,7 +1,18 @@
+/:
+  provider: login
+  action: getView
+/callback:
+  provider: server
+  action: callback 
 /fb_callback:
   provider: facebook
-  action: callback
-
+  action: callback 
 /discord_callback:
   provider: discord
-  aciton: callback
+  action: callback 
+/google_callback:
+  provider: google
+  action: callback 
+/twitter_callback:
+  provider: twitter
+  action: callback 

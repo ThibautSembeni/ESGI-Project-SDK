@@ -21,6 +21,8 @@ function myAutoloader($class)
 
 spl_autoload_register("App\myAutoloader");
 
+$oauth = Model\Oauth::getInstance();
+
 $fileRoutes = "routes.yml";
 
 if (file_exists($fileRoutes)) {
@@ -40,9 +42,7 @@ if (empty($routes[$uri]) || empty($routes[$uri]["action"])) {
     die("404 : Not Found");
 }
 
-$oauth = new Model\Oauth();
 
-include("view/index.php");
 
 $provider = ucfirst($routes[$uri]["provider"]);
 $action = strtolower($routes[$uri]["action"]);
