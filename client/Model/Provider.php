@@ -14,16 +14,18 @@ class Provider
     private $redirect_uri;
     private $scope;
 
-    public function __construct($name, $options)
+    public function __construct($name = null, $options = null)
     {
-        $this->name = $name;
-        $this->client_id = $options->client_id;
-        $this->client_secret = $options->client_secret;
-        $this->auth_url = $options->auth_url;
-        $this->user_info_url = $options->user_info_url;
-        $this->access_token_url = $options->access_token_url;
-        $this->redirect_uri = $options->redirect_uri;
-        $this->scope = $options->scope;
+        if (!is_null($options)) {
+            $this->name = $name;
+            $this->client_id = $options->client_id;
+            $this->client_secret = $options->client_secret;
+            $this->auth_url = $options->auth_url;
+            $this->user_info_url = $options->user_info_url;
+            $this->access_token_url = $options->access_token_url;
+            $this->redirect_uri = $options->redirect_uri;
+            $this->scope = $options->scope;
+        }
     }
 
     public function getName()
