@@ -17,6 +17,8 @@
 <body>
     <h1>Projet SDK</h1>
     <?php
+    $oauth = App\Model\Oauth::getInstance();
+
     foreach ($oauth->getProviders() as $provider) {
     ?>
         <ul>
