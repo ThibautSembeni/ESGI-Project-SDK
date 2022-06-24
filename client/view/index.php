@@ -7,10 +7,10 @@
     <title>Projet SDK</title>
     <style>
 
-        * {
+        /* * {
             background-color: black;
             color: white;
-        }
+        } */
 
     </style>
 </head>

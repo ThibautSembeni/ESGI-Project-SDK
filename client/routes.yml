@@ -1,18 +1,21 @@
 /:
   provider: login
   action: getView
+/oauth-success:
+  provider: oauthSuccess
+  action: getView
 /callback:
   provider: server
-  action: callback 
+  action: callback
 /fb_callback:
   provider: facebook
-  action: callback 
+  action: callback
 /discord_callback:
   provider: discord
-  action: callback 
+  action: callback
 /google_callback:
   provider: google
-  action: callback 
+  action: callback
 /twitter_callback:
   provider: twitter
-  action: callback 
+  action: callback

@@ -7,6 +7,8 @@ class Oauth
 
     private $providers;
     private static $instance = null;
+    private $user;
+    private $token;
 
     public function __construct()
     {
@@ -20,9 +22,12 @@ class Oauth
         foreach ($providers_decoded->providers as $key => $provider) {
             $routes = yaml_parse_file("routes.yml");
             $data = "";
-            array_push($providersArray, new Provider($key, $provider));
-            if (array_key_exists("/".explode("/", $provider->redirect_uri)[3], $routes) == false) {
-                $data .= "/" . explode("/", $provider->redirect_uri)[3] . ":\n";
+            //array_push($providersArray, new Provider($key, $provider));
+            $providersArray[$key] = new Provider($key, $provider);
+            
+            $redirect_uri = str_replace([$_SERVER["HTTP_HOST"], "http://", "https://"], "", $provider->redirect_uri);
+            if (array_key_exists($redirect_uri, $routes) == false) {
+                $data .= $redirect_uri . ":\n";
                 $data .= "  provider: " . $key . "\n";
                 $data .= "  action: callback \n";
                 file_put_contents('routes.yml', $data, FILE_APPEND);
@@ -43,6 +48,35 @@ class Oauth
     public function getProviders()
     {
         return $this->providers;
+    }
+
+    public function getProviderByName(string $name)
+    {
+        return $this->providers[$name];
+    }
+
+    public function setUser($user)
+    {
+        echo "set user ". $user;
+        $this->user = $user;
+    }
+
+    public function getUser()
+    {
+        echo "get user " . $this->user;
+        return $this->user;
+    }
+
+    public function setToken($token)
+    {
+        echo "set token " . $token;
+        $this->token = $token;
+    }
+
+    public function getToken()
+    {
+        echo "get token " . $this->token;
+        return $this->token;
     }
 
 }

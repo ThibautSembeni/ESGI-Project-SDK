@@ -2,6 +2,7 @@
 
 namespace App;
 
+include('helpers/helpers.php');
 include("Model/functions.php");
 
 function myAutoloader($class)
