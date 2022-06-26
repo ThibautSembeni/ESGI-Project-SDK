@@ -4,13 +4,12 @@ main.login {
     justify-content: center;
     align-items: center;
 
-    article:first-child {
+    section:first-child {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        // height: 50%;
-        width: 50%;
+        width: 30%;
         border-radius: 8px;
         border: 1px solid #dadce0;
         padding: 20px;
@@ -103,6 +102,22 @@ main.login {
                 &:hover {
                     transform: scale(1.05);
                 }
+            }
+        }
+
+        @media (min-width: 1200px) {
+            & {
+                width: 30%;
+            }
+        }
+        @media (max-width: 1200px) {
+            & {
+                width: 50%;
+            }
+        }
+        @media (max-width: 700px) {
+            & {
+                width: 100%;
             }
         }
     }
