@@ -16,6 +16,11 @@
 </head>
 <body>
     <h1>Projet SDK</h1>
+    <form action='callback' method='POST'>
+            <input type='text' name='username' value="thib">
+            <input type='password' name='password' value="test">
+            <input type='submit' value='Login'>
+    </form>
     <?php
     $oauth = App\Model\Oauth::getInstance();
 
