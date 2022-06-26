@@ -12,6 +12,7 @@ class Provider
     private $access_token_url;
     private $redirect_uri;
     private $scope;
+    private $params = null;
 
     public function __construct($name = null, $options = null)
     {
@@ -24,6 +25,9 @@ class Provider
             $this->access_token_url = $options->access_token_url;
             $this->redirect_uri = $options->redirect_uri;
             $this->scope = $options->scope;
+            if (property_exists( (object) $options, "params")) {
+                $this->params = $options->params;
+            }
         }   
     }
 
@@ -57,15 +61,38 @@ class Provider
         return $this->redirect_uri;
     }
 
+    public function getParams()
+    {
+        return $this->params;
+    }
+
     public function getAuthURl()
     {
-        $queryParams= http_build_query(array(
-            "client_id" => $this->client_id,
-            "redirect_uri" => $this->redirect_uri,
-            "response_type" => "code",
-            "scope" => $this->scope,
-            "state" => bin2hex(random_bytes(16))
-        ));
+        
+        // $queryParams= http_build_query(array(
+        //     "client_id" => $this->client_id,
+        //     "redirect_uri" => $this->redirect_uri,
+        //     "response_type" => "code",
+        //     "scope" => $this->scope,
+        //     "state" => bin2hex(random_bytes(16))
+        // ));
+        if (is_null($this->params)) {
+            $queryParams= http_build_query(array(
+                "client_id" => $this->client_id,
+                "redirect_uri" => $this->redirect_uri,
+                "response_type" => "code",
+                "scope" => $this->scope,
+                "state" => bin2hex(random_bytes(16))
+            ));
+        } else {
+            $queryParams= http_build_query(array_merge(array(
+                "client_id" => $this->client_id,
+                "redirect_uri" => $this->redirect_uri,
+                "response_type" => "code",
+                "scope" => $this->scope,
+                "state" => bin2hex(random_bytes(16))
+            ), (array) $this->params));
+        }
         return $this->auth_url."?{$queryParams}";
     }
 
