@@ -1,15 +1,15 @@
-<?php 
+<?php
 
 namespace App\Model;
 
-class FacebookProvider extends Provider {
+class GoogleProvider extends Provider {
 
     private $currentProvider;
 
     public function __construct()
     {
         $oauth = Oauth::getInstance();
-        $this->currentProvider = $oauth->getProviderByName('facebook');
+        $this->currentProvider = $oauth->getProviderByName('google'); 
     }
 
     public function callback()
@@ -19,7 +19,6 @@ class FacebookProvider extends Provider {
                 "grant_type" => "authorization_code",
                 "code" => $_GET["code"],
             ];
-
             $data = http_build_query(array_merge([
                 "redirect_uri" => $this->currentProvider->getRedirectUri(),
                 "client_id" => $this->currentProvider->getClientId(),
@@ -27,7 +26,15 @@ class FacebookProvider extends Provider {
             ], $specifParams));
 
             $url = $this->currentProvider->getAccessTokenUrl() . "?{$data}";
-            $result = @file_get_contents($url);
+            $options = array(
+                'http' => array(
+                    'method' => 'POST',
+                    'header' => 'Content-Type: application/x-www-form-urlencoded',
+                    'content' => $data
+                )
+            );
+            $context = stream_context_create($options);
+            $result = @file_get_contents($url, false, $context);
 
             if (!$result) {
                 throw new \InvalidArgumentException(404);
@@ -47,16 +54,15 @@ class FacebookProvider extends Provider {
             $context = stream_context_create($options);
             $result = file_get_contents($url, false, $context);
             $result = json_decode($result, true);
-
             $oauth = Oauth::getInstance();
             $oauth->setUser($result['name']);
             $oauth->setToken($accessToken);
+
 
             header("Location: /oauth-success");
 
         } catch (\Exception $e) {
             header("Location: {$this->currentProvider->getAuthUrl()}");
         }
-       
     }
 }
