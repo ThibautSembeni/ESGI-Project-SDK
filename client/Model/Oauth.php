@@ -7,8 +7,6 @@ class Oauth
 
     private $providers;
     private static $instance = null;
-    private $user;
-    private $token;
 
     public function __construct()
     {
@@ -35,6 +33,8 @@ class Oauth
         }
         
         $this->providers = $providersArray;  
+        session_start();
+
     }
 
     public static function getInstance()
@@ -57,26 +57,22 @@ class Oauth
 
     public function setUser($user)
     {
-        echo "set user ". $user;
-        $this->user = $user;
+        $_SESSION['user'] = $user;
     }
 
     public function getUser()
     {
-        echo "get user " . $this->user;
-        return $this->user;
+        return $_SESSION['user'];
     }
 
     public function setToken($token)
     {
-        echo "set token " . $token;
-        $this->token = $token;
+        $_SESSION["AccessToken"] = $token;
     }
 
     public function getToken()
     {
-        echo "get token " . $this->token;
-        return $this->token;
+        return $_SESSION["AccessToken"];
     }
 
 }

@@ -9,11 +9,15 @@
 <body>
     <h1>Login result</h1>
     <?php
+
         $oauth = App\Model\Oauth::getInstance();
+
+        if (empty($_SESSION)) 
+        {
+            header('Location: /' );
+        }
         echo $oauth->getUser();
         echo $oauth->getToken();
-
-        dd($oauth);
     ?>
 </body>
 </html>
