@@ -20,4 +20,3 @@ services:
      - ./config/000-default.conf:/etc/apache2/sites-available/000-default.conf
      - ./config/apache2.conf:/etc/apache2/apache2.conf
      - ./config/php.ini:/usr/local/etc/php/php.ini
-        

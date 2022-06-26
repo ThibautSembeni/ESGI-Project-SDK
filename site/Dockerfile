@@ -17,7 +17,7 @@ RUN docker-php-ext-install gd
 RUN usermod -u 1000 www-data
 
 # Enable Apache mod_rewrite
-RUN a2enmod rewrite
+RUN a2enmod ssl && a2enmod rewrite
 
 # Enable yaml
 #RUN a2enmod yaml
