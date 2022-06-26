@@ -10,7 +10,7 @@
 <body>
 
     <main class="login">
-        <article>
+        <section>
             <header>
                 <h1>Project SDK</h1>
                 <h3>Login in to your account</h3>
@@ -48,8 +48,8 @@
                 }
                 ?>
             </footer>
-        </article>
+        </section>
     </main>
-    
+
 </body>
 </html>
