@@ -7,6 +7,7 @@ class Oauth
 
     private $providers;
     private static $instance = null;
+    private $provider_file = null;
 
     public function __construct()
     {
@@ -29,6 +30,25 @@ class Oauth
                 $data .= "  provider: " . $key . "\n";
                 $data .= "  action: callback \n";
                 file_put_contents('routes.yml', $data, FILE_APPEND);
+            }
+            if (!file_exists("Model/" . ucfirst($key) . ".Provider.php")) {
+                $this->provider_file = fopen("Model/" . ucfirst($key) . ".Provider.php", "w");
+                $template_file = 
+"<?php\n
+namespace App\Model;\n
+class " . ucfirst($key) . "Provider extends Provider {\n
+    private \$currentProvider;\n
+    public function __construct()
+    {
+        \$oauth = Oauth::getInstance();
+        \$this->currentProvider = \$oauth->getProviderByName('$key'); 
+    }\n
+    public function callback()
+    {
+        // your code here...
+    }
+}";
+                fwrite($this->provider_file, $template_file);
             }
         }
         
