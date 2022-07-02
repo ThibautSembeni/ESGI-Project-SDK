@@ -69,29 +69,29 @@ main.login {
   align-items: center;
 }
 
-main.login article:first-child {
+main.login section:first-child {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 50%;
+  width: 30%;
   border-radius: 8px;
   border: 1px solid #dadce0;
   padding: 20px;
 }
 
-main.login article:first-child header {
+main.login section:first-child header {
   text-align: center;
   width: 100%;
   margin-bottom: 20px;
 }
 
-main.login article:first-child article {
+main.login section:first-child article {
   width: 100%;
   margin-bottom: 20px;
 }
 
-main.login article:first-child article form {
+main.login section:first-child article form {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -100,7 +100,7 @@ main.login article:first-child article form {
   gap: 20px;
 }
 
-main.login article:first-child #separator {
+main.login section:first-child #separator {
   width: 100%;
   height: 10px;
   margin-bottom: 20px;
@@ -111,7 +111,7 @@ main.login article:first-child #separator {
   align-items: center;
 }
 
-main.login article:first-child #separator::after {
+main.login section:first-child #separator::after {
   content: '';
   width: 45%;
   border-bottom: solid 1px black;
@@ -121,7 +121,7 @@ main.login article:first-child #separator::after {
   z-index: 1;
 }
 
-main.login article:first-child #separator::before {
+main.login section:first-child #separator::before {
   content: '';
   width: 45%;
   border-bottom: solid 1px black;
@@ -131,19 +131,19 @@ main.login article:first-child #separator::before {
   z-index: 1;
 }
 
-main.login article:first-child #separator span {
+main.login section:first-child #separator span {
   background-color: transparent;
   font-size: 1rem;
 }
 
-main.login article:first-child footer {
+main.login section:first-child footer {
   display: flex;
   flex-direction: column;
   width: 100%;
   gap: 10px;
 }
 
-main.login article:first-child footer a {
+main.login section:first-child footer a {
   border: 1px solid #999999;
   border-radius: 8px;
   display: flex;
@@ -155,19 +155,106 @@ main.login article:first-child footer a {
   padding: 10px 15px;
 }
 
-main.login article:first-child footer a svg {
+main.login section:first-child footer a svg {
   width: 20px;
   height: 20px;
   position: absolute;
   left: 2%;
 }
 
-main.login article:first-child footer a span {
+main.login section:first-child footer a span {
   text-align: center;
   font-weight: 700;
 }
 
-main.login article:first-child footer a:hover {
+main.login section:first-child footer a:hover {
+  transform: scale(1.05);
+}
+
+@media (min-width: 1200px) {
+  main.login section:first-child {
+    width: 30%;
+  }
+}
+
+@media (max-width: 1200px) {
+  main.login section:first-child {
+    width: 50%;
+  }
+}
+
+@media (max-width: 700px) {
+  main.login section:first-child {
+    width: 100%;
+  }
+}
+
+main.oauth-success {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main.oauth-success section:first-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50%;
+  border-radius: 8px;
+  border: 1px solid #dadce0;
+  padding: 20px;
+}
+
+main.oauth-success section:first-child header {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+main.oauth-success section:first-child article {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+  max-width: 50%;
+}
+
+main.oauth-success section:first-child article span {
+  overflow-x: auto;
+}
+
+main.oauth-success section:first-child article span::-webkit-scrollbar {
+  width: 10px;
+  height: 5px;
+}
+
+main.oauth-success section:first-child article span::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+main.oauth-success section:first-child article span::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+main.oauth-success section:first-child article span::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+main.oauth-success section:first-child footer a {
+  border: 1px solid #999999;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-color);
+  position: relative;
+  padding: 10px 15px;
+}
+
+main.oauth-success section:first-child footer a:hover {
   transform: scale(1.05);
 }
 
