@@ -5,43 +5,51 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projet SDK</title>
-    <style>
-
-        /* * {
-            background-color: black;
-            color: white;
-        } */
-
-    </style>
+    <link rel="stylesheet" href="./../css/main.css">
 </head>
 <body>
-    <h1>Projet SDK</h1>
-    <form action='callback' method='POST'>
-            <input type='text' name='username' value="thib">
-            <input type='password' name='password' value="test">
-            <input type='submit' value='Login'>
-    </form>
-    <?php
-    $oauth = App\Model\Oauth::getInstance();
 
-    foreach ($oauth->getProviders() as $provider) {
-    ?>
-        <ul>
-			<li>
+    <main class="login">
+        <section>
+            <header>
+                <h1>Project SDK</h1>
+                <h3>Login in to your account</h3>
+            </header>
+            <article>
+                <form action='callback' method='POST'>
+                    <input type='text' name='username' placeholder='Username'>
+                    <input type='password' name='password' value="test" placeholder='Password'>
+                    <input type='submit' value='Login in'>
+                </form>
+            </article>
+            <div id="separator">
+                <span>Or</span>
+            </div>
+            <footer>
+            <?php
+                $oauth = App\Model\Oauth::getInstance();
+
+                foreach ($oauth->getProviders() as $provider) {
+                ?>
+                    
                 <a href="<?= $provider->getAuthUrl() ?>">
-                <?php if (getIconsVerif($provider->getName())): ?>
+                    <?php if (getIconsVerif($provider->getName())): ?>
 
-                <?= getIcon($provider->getName()); ?>
+                    <?= getIcon($provider->getName()); ?>
+                    <span>Sign in with <?= ucfirst($provider->getName()) ?></span>
 
-                <?php else: ?>
+                    <?php else: ?>
 
-                <?= $provider->getName() ?>
+                    <span>Sign in with <?= ucfirst($provider->getName()) ?></span>
 
-                <?php endif ?>
-             </a></li>
-		</ul>
-    <?php
-    }
-    ?>
+                    <?php endif ?>
+                </a>
+                <?php
+                }
+                ?>
+            </footer>
+        </section>
+    </main>
+
 </body>
 </html>
